@@ -1,0 +1,23 @@
+#!/bin/sh
+
+# update system
+sudo yum update -y
+# install docker
+sudo amazon-linux-extras install docker -y
+sudo service docker start
+
+# allow ec2-user to use docker
+sudo usermod -a -G docker ec2-user
+newgrp docker
+
+# get content for website
+path_content="/content"
+sudo mkdir $path_content
+sudo chown ec2-user $path_content
+echo "My IP address is $(curl http://169.254.169.254/latest/meta-data/public-ipv4)" > $path_content/index.html
+
+# run the app via docker
+docker run \
+  -p 8080:80 \
+  -v $path_content:/usr/share/nginx/html:ro \
+  -d ${container_image}:${container_image_version}
