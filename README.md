@@ -3,9 +3,14 @@
 Deploy a simple static website with nginx docker containers
 on AWS EC2 instances via Terraform modules and AWS Auto-Scaling Groups and Elastic Load Balancer.
 
+The main website loads two different backends `backend1` and `backend2`
+and displays them for the demo purpose.
+
 The AWS Auto-Scaling Group keeps an eye on the load and will provision
 new instances or remove instances from the pool. The content is served
 via an Elastic Load Balancer which sits in front of the EC2 instances.
+
+![Illustration](./images/diagram_fernlehre2_v1.png)
 
 ## Requirements
 

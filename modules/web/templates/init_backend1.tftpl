@@ -14,13 +14,7 @@ newgrp docker
 path_content="/content"
 sudo mkdir $path_content
 sudo chown ec2-user $path_content
-echo "<p>My IP address is $(curl http://169.254.169.254/latest/meta-data/public-ipv4) </p>" > $path_content/index.html
-
-echo '<iframe src="http://placeholder" width="420" height="100"></iframe>' >> $path_content/index.html
-sed -i "s/placeholder/${backend1_lb}/g" $path_content/index.html
-
-echo '<iframe src="http://placeholder" width="420" height="100"></iframe>' >> $path_content/index.html
-sed -i "s/placeholder/${backend2_lb}/g" $path_content/index.html
+echo "I am a replica of backend1. My IP address is $(curl http://169.254.169.254/latest/meta-data/public-ipv4)" > $path_content/index.html
 
 # run the app via docker
 docker run \

@@ -10,6 +10,14 @@ variable "web_name" {
    type = string
 }
 
+variable "backend1_name" {
+  type = string
+}
+
+variable "backend2_name" {
+  type = string
+}
+
 variable "region" {
   type = string
   default = "us-east-1"
